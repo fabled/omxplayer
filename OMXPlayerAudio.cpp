@@ -391,7 +391,7 @@ void OMXPlayerAudio::CloseAudioCodec()
 
 bool OMXPlayerAudio::IsPassthrough(COMXStreamInfo hints)
 {
-  if(m_config.device == "omx:local")
+  if(m_config.device != "hdmi")
     return false;
 
   bool passthrough = false;

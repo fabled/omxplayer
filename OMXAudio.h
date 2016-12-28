@@ -46,7 +46,6 @@ public:
   COMXStreamInfo hints;
   bool use_thread;
   CStdString device;
-  CStdString subdevice;
   enum PCMLayout layout;
   bool boostOnDownmix;
   bool passthrough;
@@ -162,17 +161,10 @@ private:
   float m_downmix_matrix[OMX_AUDIO_MAXCHANNELS*OMX_AUDIO_MAXCHANNELS];
 
 protected:
-  COMXCoreComponent m_omx_render_analog;
-  COMXCoreComponent m_omx_render_hdmi;
-  COMXCoreComponent m_omx_splitter;
-  COMXCoreComponent m_omx_mixer;
   COMXCoreComponent m_omx_decoder;
-  COMXCoreTunel     m_omx_tunnel_clock_analog;
-  COMXCoreTunel     m_omx_tunnel_clock_hdmi;
-  COMXCoreTunel     m_omx_tunnel_mixer;
-  COMXCoreTunel     m_omx_tunnel_decoder;
-  COMXCoreTunel     m_omx_tunnel_splitter_analog;
-  COMXCoreTunel     m_omx_tunnel_splitter_hdmi;
+  COMXCoreComponent m_omx_component[8], *m_omx_mixer, *m_omx_render;
+  COMXCoreTunel     m_omx_tunnel[2+2*8];
+
   DllAvUtil         m_dllAvUtil;
   CCriticalSection m_critSection;
 };
